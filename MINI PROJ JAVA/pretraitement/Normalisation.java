@@ -1,24 +1,21 @@
-package kyc.Pretraitement;
-import kyc.model.Nom;
-import java.util.List;
+package Pretraitement;
+import model.Nom;
 
-public class Normalisation implements Pretraitement {
+import java.text.Normalizer;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
+public class Normalisation implements Pretraitement{
     @Override
     public List<String> traiter(Nom nom) {
-        
-        String source = nom.getNomPretraite().isEmpty() 
-                        ? nom.getNomBrut() 
-                        : String.join(" ", nom.getNomPretraite());
+        List<String> tokens = nom.getNomPretraite().isEmpty()
+                ? Arrays.asList(nom.getNomBrut().trim().split("\\s+"))
+                : nom.getNomPretraite();
 
-        String[] words = source.trim().split("\\s+");
-        
-        List<String> result = new java.util.ArrayList<>();
-        for (String word : words) {
-            String clean = word.trim().toUpperCase();
-            if (!clean.isBlank()) {
-                result.add(clean);
-            }
-        }
-        return result;
+        return tokens.stream()
+                .map(String::toUpperCase)
+                .map(String::trim)
+                .filter(t -> !t.isBlank())
+                .toList();
     }
 }
