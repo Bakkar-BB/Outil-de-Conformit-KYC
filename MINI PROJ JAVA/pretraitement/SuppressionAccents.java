@@ -1,12 +1,15 @@
-package Pretraitement;
-import model.Nom;
+package pretraitement;
 
+import model.Nom;
 import java.text.Normalizer;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-public class SuppressionAccents implements  Pretraitement {
-    private static final Pattern ACCENTS = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+
+public class SuppressionAccents implements Pretraitement {
+
+    private static final Pattern ACCENTS =
+            Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
 
     @Override
     public List<String> traiter(Nom nom) {

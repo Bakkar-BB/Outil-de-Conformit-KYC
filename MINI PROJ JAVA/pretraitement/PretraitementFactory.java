@@ -1,22 +1,25 @@
-package Pretraitement;
+package pretraitement;
 
 public final class PretraitementFactory {
 
     private PretraitementFactory() {}
 
-    public static Pretraitement nettoyeur() {
+    public static Pretraitement getNettoyeur() {
         return new Nettoyeur();
     }
 
-    public static Pretraitement normalisation() {
+    public static Pretraitement getNormalisation() {
         return new Normalisation();
     }
 
-    public static Pretraitement suppressionAccents() {
+    public static Pretraitement getSuppressionAccents() {
         return new SuppressionAccents();
     }
 
-    public static Pretraitement decomposeur() {
+    public static Pretraitement getDecomposeur() {
         return new Decomposeur();
     }
 }
+
+
+
